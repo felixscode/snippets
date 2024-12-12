@@ -21,6 +21,7 @@ This repository contains a variety of scripts, code snippets, and templates that
         - profile_with_gprof2dot.sh
         - profile_decorator.py
 - templates
-    - README.md
-    - pyproject.toml
-
+    - empty_python_project
+        - README.md
+        - pyproject.toml
+    

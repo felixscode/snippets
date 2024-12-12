@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools >= 69.5.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "your_project_name"
+version = "0.1.0"
+dependencies = [
+    "black",
+    "pytest",
+    "PyYAML",
+    "art",
+]
+requires-python = ">= 3.10"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+description = "Your project description"
+keywords = ["keyword1", "keyword2", "keyword3"]
+readme = {file = "README.md", content-type = "text/markdown"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.10",
+]
+
+[tool.setuptools]
+package-dir = {"" = "./src/project_name"}
+
+[project.urls]
+Repository = "https://github.com/yourusername/yourproject.git"
+Homepage = "https://yourprojecthomepage.com"
+
+[tool.black]
+line-length = 120
