@@ -1,21 +1,50 @@
-# Install NGINX
-sudo apt install nginx -y
-
 # Setup Container 
 install docker 
 copy dockerfile and dockercompose
 start dockercompose
 
-# Configure NGINX
-sudo rm /etc/nginx/sites-enabled/default
-sudo nano /etc/nginx/sites-available/heracless
-past nginx conf
+# install caddy
 
-# Enable NGINX
-sudo ln -s /etc/nginx/sites-available/heracless /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl restart nginx
+sudo apt update
+sudo apt install caddy
 
-# Secure Your Domain with SSL
-sudo apt install certbot python3-certbot-nginx -y
-sudo certbot --nginx -d heracless.io
+# setup caddy
+sudo nano /etc/caddy/Caddyfile
+
+paste:
+domainname.de {
+    reverse_proxy 127.0.0.1:port
+}
+
+# start caddy
+sudo pkill caddy
+sudo systemctl restart caddy
+sudo systemctl status caddy
+
+
+# make service file to start docker container
+sudo systemctl enable docker
+sudo nano /etc/systemd/system/docker-compose-streamlit.service
+
+past:
+[Unit]
+Description=Docker Compose Streamlit App
+Requires=docker.service
+After=docker.service
+
+[Service]
+WorkingDirectory=/path/to/your/docker-compose-project
+ExecStart=/usr/local/bin/docker-compose up -d
+ExecStop=/usr/local/bin/docker-compose down
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+run:
+sudo systemctl daemon-reload
+sudo systemctl enable docker-compose-streamlit.service
+sudo systemctl start docker-compose-streamlit.service
+
+# verify
+sudo reboot
