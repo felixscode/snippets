@@ -24,6 +24,16 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "black",
+    "pytest",
+]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+]
+
 [tool.setuptools]
 package-dir = {"" = "./src/project_name"}
 
